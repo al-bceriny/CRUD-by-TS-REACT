@@ -1,19 +1,16 @@
-# React + TypeScript + Vite
+# ToDo CRUD App (React + TypeScript + Vite)
 
-* Deployed Link: https://tsxpert-todo-app-guri.netlify.app/
-## Store Locally
-## React + Typescript CRUD App
+A simple **CRUD (Create, Read, Update, Delete)** application built with **React, TypeScript, and Vite**.  
+This project demonstrates fundamental React concepts such as components, props, hooks, and state management while keeping the structure clean and modular.
 
-* This is how the App looks on startup
-* ![image](https://github.com/garry332212/ToDo-ReactTs/assets/87964388/42c730a2-a81e-4e2c-aabe-2aafa865a8fb)
+---
 
-_________________________________
-* if you cloned the repo use
-  ## npm install
-* then run the command 
-  ## npm run dev to start the development server
+## 🚀 Tech Stack
+- **React** + **TypeScript**
+- **Vite** (fast dev build tool)
+- **CSS Modules**
+- **ESLint** (linting & formatting)
 
+---
 
-![image](https://github.com/garry332212/ToDo-ReactTs/assets/87964388/e73f2ec6-2f58-4d2d-9dc8-fb502a4779c1)
-
-
+## 📂 Project Structure
