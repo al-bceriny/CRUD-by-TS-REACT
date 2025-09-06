@@ -1,0 +1,196 @@
+/* ===== Container ===== */
+.todoContainer{
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 6px 4px 10px;
+  background: linear-gradient(180deg, rgba(2,6,23,.02), rgba(2,6,23,0));
+  border-radius: var(--radius);
+}
+
+/* ===== List wrapper ===== */
+.todos{
+  display: grid;
+  gap: 10px;
+  max-height: 520px;
+  overflow-y: auto;
+  padding: 6px 2px 6px 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  scroll-behavior: smooth;
+}
+
+/* Nice scrollbar to match the theme */
+.todos::-webkit-scrollbar{ width: 10px; }
+.todos::-webkit-scrollbar-thumb{
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  opacity: .9;
+}
+.todos::-webkit-scrollbar-track{
+  background: color-mix(in oklab, var(--card), var(--bg) 30%);
+  border-radius: 999px;
+}
+
+/* ===== Single item (card) ===== */
+.items{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 12px 14px;
+  border-radius: calc(var(--radius) - 2px);
+
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0)) ,
+    color-mix(in oklab, var(--card), var(--bg) 10%);
+
+  border: 1px solid rgba(99,102,241,.18);
+  box-shadow: var(--shadow-sm);
+
+  transition: transform .12s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+}
+.items:hover{
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(59,130,246,.35);
+}
+.items:focus-within{
+  box-shadow: 0 0 0 6px var(--ring), var(--shadow-sm);
+  border-color: var(--primary);
+}
+
+/* حالة “منجز” اختيارية إن وجدت كلاس is-done */
+.items.is-done{
+  opacity: .85;
+  background: linear-gradient(180deg, rgba(34,197,94,.08), rgba(34,197,94,.02));
+  border-color: rgba(34,197,94,.35);
+}
+.items.is-done .editBtn > span{
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+/* ===== Left side: text + (optional) icon/checkbox ===== */
+.editBtn{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0; /* for text truncation */
+  margin: 6px 4px;
+}
+.editBtn > span{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 6px;
+  line-height: 1.35;
+  font-weight: 600;
+  color: var(--text);
+  /* قصّ لطيف عند النص الطويل */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== Right side: edit actions ===== */
+.editText{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Input inside edit mode */
+.editText > input{
+  height: 42px;
+  min-width: 220px;
+  max-width: 360px;
+  padding: 0 14px;
+
+  border: 1px solid rgba(99,102,241,.22);
+  border-radius: var(--radius-pill);
+  background: color-mix(in oklab, var(--card), var(--bg) 25%);
+  box-shadow: var(--shadow-sm);
+
+  font: inherit;
+  color: var(--text);
+
+  transition: box-shadow .2s ease, border-color .2s ease, transform .05s ease;
+}
+.editText > input:focus{
+  border-color: var(--primary);
+  box-shadow: 0 0 0 6px var(--ring);
+  transform: translateY(-1px);
+}
+
+/* ===== Buttons ===== */
+button{ cursor: pointer; background: transparent; border: none; font: inherit; }
+
+/* أي زر داخل العنصر */
+.items > button{ color: var(--danger); }
+
+/* أزرار الوضع التحريري */
+.editText > button{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: .2px;
+
+  transition: transform .08s ease, filter .2s ease, box-shadow .2s ease;
+  user-select: none;
+  outline: none;
+}
+
+/* ترتيب الأزرار نفسه الذي كنت تستخدمه: 
+   nth-child(2) للأخضر (تأكيد)، nth-child(3) للأحمر (حذف/إلغاء) */
+.editText > button:nth-child(2){
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), #16a34a);
+  box-shadow: 0 6px 14px rgba(22,163,74,.25);
+}
+.editText > button:nth-child(3){
+  color: #fff;
+  background: linear-gradient(135deg, var(--danger), #b91c1c);
+  box-shadow: 0 6px 14px rgba(239,68,68,.25);
+}
+
+.editText > button:hover{ filter: brightness(1.06); }
+.editText > button:active{ transform: translateY(1px) scale(.99); }
+.editText > button:focus-visible{
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ===== Subtle badges (اختياري لو عندك سبان ثاني كملاحظة) ===== */
+.editBtn > span small{
+  font-weight: 600;
+  font-size: .75rem;
+  padding: 2px 8px;
+  margin-inline-start: 6px;
+  border-radius: 999px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--warning), #d97706);
+  opacity: .9;
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce){
+  .items, .editText > button, .editText > input, .todos{ transition: none !important; }
+  .items:hover{ transform: none; }
+}
+
+/* ===== Small screens tweaks ===== */
+@media (max-width: 520px){
+  .editText > input{ min-width: 0; width: 58vw; }
+  .editBtn > span{ max-width: 46vw; }
+}
