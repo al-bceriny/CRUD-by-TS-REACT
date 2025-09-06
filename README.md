@@ -12,5 +12,4 @@ This project demonstrates fundamental React concepts such as components, props, 
 - **ESLint** (linting & formatting)
 
 ---
-
-## 📂 Project Structure
+(https://al-bceriny.github.io/CRUD-by-TS-REACT/)
